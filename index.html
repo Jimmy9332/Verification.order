@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начальная страница</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #e0ffff; /* Светло-голубовато-зеленый фон */
+        }
+
+        .header {
+            width: 100%;
+            color: black;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: none;
+            background-color: #008080; /* Зелено-синий цвет */
+        }
+
+        .header h1 {
+            margin: 0;
+            flex: 1;
+            text-align: left;
+            color: #fff;
+        }
+
+        .header__logo {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header__logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+       .main {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* Светло-голубоватый фон для main */
+        }
+
+        .main__title-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .main__title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .main__info-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .main__info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        .main__info-table td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .main__name {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        .main__info-text {
+            font-size: 1em;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            word-break: break-word;
+            color: black;
+        }
+
+        .main__status p {
+            margin-bottom: 0;
+        }
+
+        .main__green {
+            color: #00a651;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .status-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            background-size: 200% auto;
+            transition: background-position 0.5s ease-in-out;
+            animation: gradientAnimation 4s linear infinite;
+        }
+
+        .status-button:hover {
+            background-position: right center;
+        }
+
+        .status-bar {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8em;
+            color: #fff;
+            border-top: 1px solid #555;
+            background-color: #008080;
+        }
+
+
+         @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .footer {
+            width: 100%;
+            background-color: #f0f8ff; /* Светло-голубоватый фон для footer */
+            padding: 20px 0;
+            border-top: 1px solid #555;
+        }
+
+        .footer__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer__row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .footer__col {
+            flex: 1;
+            padding: 10px;
+            min-width: 150px;
+            order: 1;
+        }
+
+        .footer__title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .footer__link {
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer__link:hover {
+            color: #007bff;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            order: 2;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <img src="https://avatars.mds.yandex.net/i?id=b1b59b98358d1d027dde06a0d054cc05b7f82e1b-4435069-images-thumbs&n=13" alt="Logo">
+        </div>
+        <h1>Verification Page</h1>
+    </header>
+    <div class="main">
+        <div>
+            <div class="main__title-container">
+                <h2 class="main__title rc-accordion__heading__title"></h2>
+            </div>
+            <div class="main__info-container">
+                <p class="main__name"><span lng-key="main.receiver">Receiver name:</span> <b>Verification user</b></p>
+                <table class="main__info-table">
+                    <tr>
+                        <td>
+                            <p class="main__info-text" id="verification-info">
+                                Hello, I welcome you to our website, support staff and developers of various websites check users for fake bank cards, accounts and identity verification, this is necessary in order to reduce the risk of fraud on web services, thank you for reading, if you are here, please check, have a good day.
+                            </p>
+                        </td>
+                   </tr>
+                </table>
+           </div>
+        </div>
+        <div class="main__status">
+            <p><button class="status-button font-headline" onclick="window.location.href='payment.html'">Verify</button></p>
+        </div>
+    </div>
+    <div class="content">
+    </div>
+    <footer class="status-bar">
+       status: wait for verification
+    </footer>
+   <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__row">
+                <div class="footer__col">
+                    <h3 class="footer__title" lng-key="footer.about">Information</h3>
+                    <a class="footer__link" href="#" lng-key="footer.f1">About</a>
+                    <a class="footer__link" href="#" lng-key="footer.f2">Jobs</a>
+                    <a class="footer__link" href="#" lng-key="footer.f3">Blog</a>
+                </div>
+                <div class="footer__col">
+                    <h3 class="footer__title" lng-key="footer.help">Business and Organizations</h3>
+                    <a class="footer__link" href="#" lng-key="footer.f4">Get Started</a>
+                    <a class="footer__link" href="#" lng-key="footer.f5">Events</a>
+                    <a class="footer__link" href="#" lng-key="footer.f6">For Developers</a>
+                </div>
+                <div class="footer__col">
+                    <h3 class="footer__title" lng-key="footer.legal">Legal</h3>
+                    <a class="footer__link" href="#" lng-key="footer.f7">Terms and conditions</a>
+                    <a class="footer__link" href="#" lng-key="footer.f8">Privacy policy</a>
+                </div>
+               <div class="footer__col">
+                    <div class="footer__socials">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

